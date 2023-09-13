@@ -1,25 +1,20 @@
-pipeline {
+pipeline{
     agent any
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn -f hello-app/pom.xml -B -DskipTests clean package'
-            }
-            post {
-                success {
-                    echo "Now Archiving the Artifacts....."
-                    archiveArtifacts artifacts: '**/*.jar'
-                }
+
+    tools {
+         maven 'maven'
+         jdk 'java'
+    }
+
+    stages{
+        stage('checkout'){
+            steps{
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github access', url: 'https://github.com/sreenivas449/java-hello-world-with-maven.git']]])
             }
         }
-        stage('Test') {
-            steps {
-                sh 'mvn -f hello-app/pom.xml test'
-            }
-            post {
-                always {
-                    junit 'hello-app/target/surefire-reports/*.xml'
-                }
+        stage('build'){
+            steps{
+               bat 'mvn package'
             }
         }
     }
