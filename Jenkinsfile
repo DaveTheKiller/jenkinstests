@@ -11,13 +11,15 @@ pipeline {
 
         stage('stage2') {
           steps {
-            echo 'hola mundo 2'
+            sh 'sleep 4'
+            sh 'echo "jojojo"'
           }
         }
 
         stage('stage3') {
           steps {
             echo 'hola mundo 3'
+            sh 'echo "stage 3 finish"'
           }
         }
 
