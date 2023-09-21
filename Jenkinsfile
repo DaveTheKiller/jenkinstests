@@ -28,7 +28,8 @@ pipeline {
           steps {
             echo 'hola mundo 3'
             sh 'echo "stage 3 finish"'
-            archiveArtifacts(artifacts: '*', allowEmptyArchive: true, fingerprint: true)
+            archiveArtifacts(artifacts: '*.txt', allowEmptyArchive: true, fingerprint: true)
+            junit '*.txt'
           }
         }
 
