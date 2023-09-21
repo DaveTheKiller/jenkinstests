@@ -28,6 +28,7 @@ pipeline {
           steps {
             echo 'hola mundo 3'
             sh 'echo "stage 3 finish"'
+            archiveArtifacts(artifacts: '*', allowEmptyArchive: true, fingerprint: true)
           }
         }
 
