@@ -36,6 +36,12 @@ pipeline {
       }
     }
 
+    stage('stageeee2') {
+      steps {
+        sh 'echo "hola 2"'
+      }
+    }
+
   }
   environment {
     NOMBRE = 'Paco'
