@@ -6,6 +6,14 @@ pipeline {
         stage('stage1') {
           steps {
             echo 'hola mundo 1'
+            sh '''touch paco.txt
+
+
+
+
+
+'''
+            sh 'echo "joputa" > paco.txt'
           }
         }
 
